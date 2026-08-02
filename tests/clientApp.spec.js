@@ -39,6 +39,5 @@ test.only('Client App Login', async ({ page }) => {
 
     await page.locator('.ta-results').getByText(' India', { exact: true }).click();
 
-    //testing
 
 })
