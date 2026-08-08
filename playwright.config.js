@@ -1,25 +1,33 @@
-// @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
 
-  reporter: 'html',
-  
-  timeout : 80000,
+  timeout: 30 * 1000,
 
-  expect: {
-    timeout: 50000, // 👈 this is the wait for expect assertions
-  },
-  
+  retries: process.env.CI ? 2 : 0,
+
+  workers: process.env.CI ? 1 : undefined,
+
+  reporter: [
+    ['html', {
+      outputFolder: 'playwright-report',
+      open: 'never'
+    }],
+    ['junit', {
+      outputFile: 'test-results/results.xml'
+    }]
+  ],
+
   use: {
-    
-    browserName : 'chromium',
+    baseURL: 'https://your-application.com',
 
-    headless : false
-    
-  },
+    headless: true,
 
-  
+    screenshot: 'only-on-failure',
+
+    video: 'retain-on-failure',
+
+    trace: 'retain-on-failure'
+  }
 });
-
