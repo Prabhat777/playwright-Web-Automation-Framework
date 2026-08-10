@@ -3,14 +3,14 @@ class LoginPage {
     this.page = page;
 
     // Locators
-    this.usernameInput = page.locator("input[formcontrolname='email']");
-    this.passwordInput = page.locator("input[formcontrolname='password']");
-    this.loginButton = page.locator("button[aria-label='LOG IN']");
+    this.usernameInput = page.getByPlaceholder("email@example.com");
+    this.passwordInput = page.locator("//input[@id='userPassword']");
+    this.loginButton = page.locator("//input[@type='submit']");
   }
 
   // Actions (methods)
   async goto() {
-    await this.page.goto("https://guardspro-client-uat.azurewebsites.net/login");
+    await this.page.goto("https://rahulshettyacademy.com/client/#/auth/login");
   }
 
   async login(username, password) {

@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('../pages/LoginPage');
 
 test.only('Client App Login', async ({ page }) => {
 
     // Login Form Page 
-    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
-    await page.getByPlaceholder("email@example.com").fill("prabhat.singh@gmail.com");
-    await page.locator("//input[@id='userPassword']").fill("Password@12345");
-    await page.locator("//input[@type='submit']").click();
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login("prabhat.singh@gmail.com", "Password@12345")
     await expect(page.getByText("Login Successfully")).toBeVisible();
 
     // Dashboard Page 
