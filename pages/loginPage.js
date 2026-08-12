@@ -1,3 +1,6 @@
+const { expect } = require('@playwright/test');
+
+
 class LoginPage {
   constructor(page) {
     this.page = page;
@@ -17,6 +20,8 @@ class LoginPage {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
+    await expect(this.page.getByText("Login Successfully")).toBeVisible();
+    await this.page.waitForLoadState("networkidle");
   }
 }
 
