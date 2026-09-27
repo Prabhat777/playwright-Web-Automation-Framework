@@ -22,7 +22,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://rahulshettyacademy.com/client/#/auth/login',
 
-    headless: false,
+    headless: true,
 
     screenshot: 'only-on-failure',
 
